@@ -1,0 +1,149 @@
+<div @customeAnimationSetOne >
+    <form [formGroup]="signupform">
+        <mat-form-field>
+            <mat-label>Username</mat-label>
+            <span matSuffix><mat-icon>person_add</mat-icon></span>
+            <input formControlName="username"
+                   matInput
+                   type="text">
+                <div *ngIf="signupform.get('username').touched && signupform.get('username').invalid">
+                    <mat-error *ngIf="signupform.get('username').errors.minlength">
+                        user entered only {{signupform.get('username').errors.minlength.actualLength}} characters
+                    </mat-error>
+                    <mat-error *ngIf="signupform.get('username').errors.maxlength">
+                        user should enter only {{signupform.get('username').errors.maxlength.requiredLength}} characters
+                    </mat-error>
+                    <mat-error *ngIf="signupform.get('username').errors.required"> 
+                        user should enter this field mandatorily
+                    </mat-error>
+                </div>
+        </mat-form-field><br>
+        <mat-form-field>
+            <mat-label>Mobile</mat-label>
+            <span matSuffix><mat-icon>local_phone</mat-icon></span>
+            <input formControlName="mobile"
+                   matInput
+                   type="number">
+                <div *ngIf="signupform.get('mobile').touched && signupform.get('mobile').invalid">
+                    <mat-error *ngIf="signupform.get('mobile').errors.minlength">
+                        user entered only {{signupform.get('mobile').errors.minlength.actualLength}} characters
+                    </mat-error>
+                    <mat-error *ngIf="signupform.get('mobile').errors.maxlength">
+                        user should enter only {{signupform.get('mobile').errors.maxlength.requiredLength}} characters
+                    </mat-error>
+                    <mat-error *ngIf="signupform.get('mobile').errors.required"> 
+                        user should enter this field mandatorily
+                    </mat-error>
+                </div>
+        </mat-form-field><br>
+        <mat-form-field>
+            <mat-label>UniqueID</mat-label>
+            <span matSuffix><mat-icon>perm_identity</mat-icon></span>
+            <input formControlName="uniqueID"
+            matInput
+            (change)="log(signupform.get('uniqueID'))"
+            type="text">
+            <div class="uniqueIDcheck" *ngIf="signupform.get('uniqueID').pending && signupform.get('uniqueID').touched">
+                <span>checking the uniqueID in database </span>
+                <mat-progress-spinner [diameter]="20" mode="indeterminate"></mat-progress-spinner>
+            </div>
+            <div class="uniqueIDcheck" *ngIf="signupform.get('uniqueID').status =='VALID' && signupform.get('uniqueID').touched">
+                <span>uniqueID is available<mat-icon>thumb_up</mat-icon></span>
+            </div>
+            <div *ngIf="signupform.get('uniqueID').touched && signupform.get('uniqueID').invalid">
+                <div class="uniqueIDcheck" *ngIf="signupform.get('uniqueID').errors.uniqueID && signupform.get('uniqueID').touched">
+                    <span>uniqueID already exist in database<mat-icon>thumb_down</mat-icon></span>
+                </div> 
+                <div class="uniqueIDcheck" *ngIf="signupform.get('uniqueID').errors.serverError && signupform.get('uniqueID').touched">
+                    <span>unknown server issue,try later<mat-icon>thumb_down</mat-icon></span>
+                </div> 
+                <mat-error *ngIf="signupform.get('uniqueID').errors.minlength">
+                    user entered only {{signupform.get('uniqueID').errors.minlength.actualLength}} characters
+                </mat-error>
+                <mat-error *ngIf="signupform.get('uniqueID').errors.maxlength">
+                    user should enter only {{signupform.get('uniqueID').errors.maxlength.requiredLength}} characters
+                </mat-error>
+                <mat-error *ngIf="signupform.get('uniqueID').errors.required"> 
+                    user should enter this field mandatorily
+                </mat-error>
+            </div>
+        </mat-form-field><br>
+        <mat-form-field>
+            <mat-label>Password</mat-label>
+            <span matSuffix><mat-icon>lock</mat-icon></span>
+            <input formControlName="password"
+                   matInput
+                   type="text">
+                <div *ngIf="signupform.get('password').touched && signupform.get('password').invalid">
+                    <mat-error *ngIf="signupform.get('password').errors.minlength">
+                        user entered only {{signupform.get('password').errors.minlength.actualLength}} characters
+                    </mat-error>
+                    <mat-error *ngIf="signupform.get('password').errors.maxlength">
+                        user should enter only {{signupform.get('password').errors.maxlength.requiredLength}} characters
+                    </mat-error>
+                    <mat-error *ngIf="signupform.get('password').errors.required"> 
+                        user should enter this field mandatorily
+                    </mat-error>
+                </div>
+        </mat-form-field>
+        <mat-radio-group formControlName="membership">
+            <mat-radio-button value="Prime">Prime</mat-radio-button>
+            <mat-radio-button value="Non-Prime">Non-Prime</mat-radio-button><br>
+            <div *ngIf="signupform.get('membership').touched && signupform.get('membership').invalid">
+                <mat-error *ngIf="signupform.get('membership').errors.required"> 
+                    user should enter this field mandatorily
+                </mat-error>
+              </div>
+        </mat-radio-group><br>
+        <div class="btnone">
+            <button mat-raised-button color="primary"
+                    [disabled]="signupform.invalid || signupform.status=='PENDING'" 
+                    (click)="signUp(signupform.value)">SignUp</button>
+        </div>
+    </form>
+</div>
+<div *ngIf="$showProgress | async as showProgress" class="profileloadhead" >
+    <div>
+        <h6>Please wait, while we create a HotList for you...</h6>
+    </div>
+        <div class="profileload">
+        <mat-progress-spinner [diameter]="50" mode="indeterminate"></mat-progress-spinner>
+    </div>
+</div>
+<div *ngIf="$signupObject | async as signupObject">
+    <div>
+        <div *ngIf="$showData | async" class="custmessage"> 
+            <h6>HotList account created succesfully <span>
+                <mat-icon>thumb_up</mat-icon>
+            </span></h6>
+        </div>
+        <mat-card *ngIf="$showData | async">
+            <mat-card-header>
+                <div mat-card-avatar class="background-avatar"></div>
+                <mat-card-title>{{signupObject.username}}</mat-card-title>
+                <mat-card-subtitle>{{signupObject.mobile}}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <mat-list>
+                    <mat-list-item>UniqueID:{{signupObject.uniqueID}}</mat-list-item>
+                    <mat-list-item>Membership:{{signupObject.membership}}</mat-list-item>
+                    <mat-list-item>Subscription Cost:{{signupObject.premiumcost | currency:'USD'}}</mat-list-item>
+                </mat-list>
+            </mat-card-content>
+            <mat-card-actions>
+                <div class="formgrouptwo">
+                    <button mat-raised-button class="btntwo" 
+                            [routerLink]="['/shopping/shoppingList']">Continue Shopping<span>
+                        <mat-icon>shopping_cart</mat-icon>
+                    </span></button>
+                    <button mat-raised-button class="btntwo" 
+                            [routerLink]="['/authentication/login']"
+                            >LogIn<span>
+                        <mat-icon>person</mat-icon>
+                    </span>
+                    </button>
+              </div>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+</div>

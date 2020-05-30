@@ -1,0 +1,26 @@
+@import "../node_modules/@angular/material/_theming.scss";
+
+@include mat-core();
+
+$primary:mat-palette($mat-teal,900);
+$accent:mat-palette($mat-purple,900);
+$warn:mat-palette($mat-red);
+
+$theme_light:mat-light-theme($primary,$accent,$warn);
+$theme_dark:mat_dark-theme($primary,$accent,$warn);
+@include angular-material-theme($theme_light);
+
+$typography:mat-typography-config(
+    $font-family:   'Roboto,Neucha,"Caveat Brush"',
+    $headline:      mat-typography-level(30px, 32px, 400),
+    $title:         mat-typography-level(30px, 32px, 500),
+    $subheading-2:  mat-typography-level(20px, 28px, 400),
+    $subheading-1:  mat-typography-level(20px, 24px, 400),
+    $body-2:        mat-typography-level(20px, 24px, 500),
+    $body-1:        mat-typography-level(20px, 20px, 400),
+    $caption:       mat-typography-level(15px, 20px, 400),
+    $button:        mat-typography-level(15px, 14px, 500),
+    $input:         mat-typography-level(20px, 1.125, 400)
+);
+
+@include angular-material-typography($typography);

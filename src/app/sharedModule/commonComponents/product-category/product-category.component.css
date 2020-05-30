@@ -1,0 +1,10 @@
+.sticky
+{
+    position: fixed;
+    width: 25%;
+}
+.loadspinner    
+{
+    margin-left: 45%;
+    margin-top: 25%;
+}

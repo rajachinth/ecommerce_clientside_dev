@@ -1,0 +1,14 @@
+.accessdenied
+{
+    margin-top: 10%;
+    width: 100%;
+    display: grid;
+    justify-content: center;
+}
+.button
+{
+    margin-top: 5%;
+    display: grid;
+    justify-content: center;
+
+}

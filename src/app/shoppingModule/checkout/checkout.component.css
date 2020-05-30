@@ -1,0 +1,16 @@
+.main-body
+{
+    margin-top: 3%;
+    margin-left: 3%;
+}
+.btn-danger,.btn-success
+{
+    border-radius: 20px;
+}
+.backgroundSource
+{
+    height: 50px;
+    width: 50px;
+    background-size: cover;
+    border-radius: 100%;
+}

@@ -1,0 +1,64 @@
+<div class="main-body">
+    <h2>Shopping Cart</h2>
+    <ng-template #template1>
+        <h5>Load your cart to procced further</h5>
+    </ng-template>
+    <div class="col-6" *ngIf="$cartState | async as cart">
+        <ng-container *ngIf="cart.totalItemsCount > 0; else template1">
+            <h5>Your cart is loaded with {{cart.totalItemsCount}} items</h5>
+            <button class="btn btn-secondary"
+                style="margin-left: 10px; margin-bottom: 10px;"
+               (click)="clearCart()"
+               >Clear Cart</button>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th style="width: 100px;"></th>
+                        <th class="text-left" style="width: 150px;">Title</th>
+                        <th class="text-center" style="width: 100px;">Quantity</th>
+                        <th class="text-center" style="width: 100px;">Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of cart.productItem">
+                        <td>
+                            <div class="backgroundSource" [style.background-image]="'url('+item.imageURL+')'"></div>
+                        </td>
+                        <td class="text-left">{{item.title}}</td>
+                        <td class="text-center">
+                            <ng-container>
+                                <div class="row no-gutters">
+                                    <div class="col-2">
+                                        <button class="btn btn-success btn-block"
+                                                (click)="deleteFromcart(item)"
+                                                >-</button>
+                                    </div>
+                                    <div class="col" style="text-align: center;">
+                                        <p class="btn btn-secondary">X {{item.count}}</p>
+                                    </div>
+                                    <div class="col-2">
+                                        <button class="btn btn-danger btn-block"
+                                                (click)=addToCart(item)
+                                                >+</button>
+                                    </div>
+                                </div>
+                            </ng-container>
+                        </td>
+                        <td class="text-center">{{item.price | currency:'USD'}}</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                <th class="text-left">Final sum</th>
+                <th></th>
+                <th class="text-center">{{cart.totalItemsCount}}</th>
+                <th class="text-center">{{cart.totalItemsCost | currency:'USD'}}</th>
+                </tfoot>
+            </table>
+            <button style="margin-top: 5px;" class="btn btn-danger"
+                    routerLink='/shopping/ordersummary'>Proceed</button>
+        </ng-container>
+    </div>
+</div>
+
+
+

@@ -1,0 +1,94 @@
+<div class="row" *ngIf="$cartstate | async as item">
+    <div class="col-6">
+        <h5>Shipping Details</h5>
+        <form class="form-group" [formGroup]="orderForm">
+            <label for="customername">Customer name</label>
+              <input formControlName="name"
+                      id="customername"
+                      class="form-control"
+                     type="text">
+                  <div class="alert alert-danger" *ngIf="orderForm.get('name').touched && orderForm.get('name').invalid">
+                      <div *ngIf="orderForm.get('name').errors.minlength">
+                          customer name conatins only {{orderForm.get('name').errors.minlength.actualLength}} characters
+                      </div>
+                      <div *ngIf="orderForm.get('name').errors.maxlength">
+                          customer name should conatin only {{orderForm.get('name').errors.maxlength.requiredLength}} characters
+                      </div>
+                      <div *ngIf="orderForm.get('name').errors.required"> 
+                          customer name field is mandated
+                      </div>
+                      <div *ngIf="orderForm.get('name').errors.error">
+                          customer name should not contain special characters
+                      </div>
+                  </div>
+              <label for="address">Address</label>
+                 <textarea
+                      class="form-control"
+                      formControlName="address"
+                      id="address"
+                      rows="4"  ></textarea>
+              <div class="alert alert-danger" *ngIf="orderForm.get('address').touched && orderForm.get('address').invalid">
+                  <div *ngIf="orderForm.get('address').errors.maxlength">
+                     address should have only {{orderForm.get('address').errors.maxlength.requiredLength}} characters
+                  </div>
+                  <div *ngIf="orderForm.get('address').errors.required"> 
+                     address field mandatorily
+                  </div>
+              </div>
+              <label for="pincode">Pincode</label>
+              <input formControlName="pincode"
+                      id="pincode"
+                      class="form-control"
+                     type="number">
+                  <div class="alert alert-danger" *ngIf="orderForm.get('pincode').touched && orderForm.get('pincode').invalid">
+                      <div *ngIf="orderForm.get('pincode').errors.required"> 
+                          user should enter this field mandatorily
+                      </div>
+                      <div *ngIf="orderForm.get('pincode').errors.noSpaceValidation">
+                          pincode should not contain any space characters
+                      </div>
+                  </div>
+               <label for="customermobile">Mobile</label>
+              <input formControlName="mobile"
+                      id="customermobile"
+                      class="form-control"
+                     type="number">
+                  <div class="alert alert-danger" *ngIf="orderForm.get('mobile').touched && orderForm.get('mobile').invalid">
+                      <div *ngIf="orderForm.get('mobile').errors.required"> 
+                          mobile number field mandated
+                      </div>
+                  </div>
+          <div class="btnone">
+              <button 
+                      [disabled]="orderForm.invalid" 
+                      class="btn btn-success"
+                      (click)="confirmOrder(orderForm.value,item)">Confirm</button>
+          </div>
+      </form>
+    </div>
+    <div class="col-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Cart Summary</h5>
+                <p class="card-text">Cart is loaded with {{item.totalItemsCount}} items</p>
+                <ul class="list-group list-group-flush" 
+                    *ngFor="let itemProduct of item.productItem; last as lastitem">
+                    <li class="list-group-item">
+                        {{itemProduct.title}}
+                        <span style="font-weight:bold">  X{{itemProduct.itemCount}}</span>
+                        <div class="float-right" style="font-weight: bold;">
+                            {{(itemProduct.price*itemProduct.itemCount) | currency:'USD'}}
+                        </div>
+                    </li>
+                    <li class="list-group-item" *ngIf="lastitem" style="font-weight: bold;">
+                        Total Quantity
+                        <span style="font-weight: bold;">  X{{item.totalItemsCount}}</span>
+                        <div class="float-right" style="font-weight: bold;">
+                        Price Sum: {{item.totalItemsCost | currency:'USD'}}
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,14 @@
+.row
+{
+    margin-top: 5px;
+    margin-left: 3%;
+}
+a
+{
+    cursor: pointer;
+}
+.loadspinner,.errorLogin
+{
+    margin-top: 3%;
+    margin-left: 25%;
+}

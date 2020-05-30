@@ -1,0 +1,42 @@
+/*.usermessage
+{
+    border-radius: 50px;
+    background-color: cadetblue;
+    width: 40%;
+    font-size: 25px;
+    margin-left: 5%;
+    display: grid;
+    justify-content: center;
+    margin-top: 15px;
+    height: 40px;
+    margin-bottom: 15px;
+    font-size: 20px;
+    padding: 5px;
+    color: white;
+}
+*/
+.divmessage
+{
+    margin-top: 15px;
+}
+.form-group
+{
+    margin-left: 5%;
+    width: 40%;
+    display: flex;
+    justify-content: left;
+}
+.form-control
+{
+    color: red;
+    border-radius: 10px;
+}
+.errorLogin.ng-star-inserted,.loadspinner
+{
+    padding-left: 15px;
+}
+.flexdisplay
+{
+    display: flex;
+    justify-content: left;
+}

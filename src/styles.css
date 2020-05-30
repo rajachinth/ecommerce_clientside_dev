@@ -1,0 +1,8 @@
+@import '../node_modules/bootstrap/dist/css/bootstrap.css';
+
+@import "https://fonts.googleapis.com/css2?family=Caveat+Brush&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Neucha&display=swap";
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

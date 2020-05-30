@@ -1,0 +1,41 @@
+<div class="content">
+    <p>
+        <a class="btn btn-primary" 
+           [routerLink]="['/product/adminproduct/addproduct',$curentUser | async]">Add Movie</a>
+    </p>
+    <div class="loadspinner" *ngIf="($logState | async)">
+        <mat-progress-spinner [diameter]="90" mode="indeterminate"></mat-progress-spinner>
+    </div>
+    <div class="errormessage"  *ngIf="($errorCheck | async)">
+        <label>{{$errorStatusProducts | async}} <span>
+            <mat-icon style="color: red;">warning</mat-icon>
+        </span></label>
+    </div>
+    <div *ngIf="!($errorCheck | async) && !($logState | async)">
+        <p>
+            <input type='text'
+                   placeholder="search..."
+                   #search
+                   class="form-control"
+                   (keyup)="filter(search.value)" >
+        </p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Price</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let list of filterLists">
+                    <td>{{list.title}}</td>
+                    <td>{{list.price | currency:'USD'}}</td>
+                    <td>
+                        <a [routerLink]="['/product/adminproduct/editproduct',$curentUser | async,list.productID]">Edit</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

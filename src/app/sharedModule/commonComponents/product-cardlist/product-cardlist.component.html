@@ -1,0 +1,33 @@
+<div *ngIf="items.title" class="card" style="width: 15rem;" >
+    <img [src]="items.imageURL" alt="items.value" class="card-img-top" 
+         style="width:15rem;height:10rem"
+         *ngIf="items.imageURL">
+    <div class="card-body">
+        <h6 class="card-title">{{items.title}}</h6>
+        <h6 class="card-text">by {{items.author}}</h6>
+        <h6 class="card-text">{{items.price | currency:'USD'}}</h6>
+    </div>
+    <div *ngIf="isActive" class="card-footer">
+        <button *ngIf="!(itemDetails[0].isItemAdded); else buttontemplate"
+                class="btn btn-info btn-block"
+                (click)=addToCart(items)
+                >Add to Cart</button>
+        <ng-template #buttontemplate>
+            <div class="row no-gutters">
+                <div class="col-2">
+                    <button class="btn btn-success btn-block"
+                            (click)="deleteFromcart(items)"
+                            >-</button>
+                </div>
+                <div class="col" style="text-align: center;">
+                    <p class="btn btn-secondary">Added {{itemDetails[0].itemCount}} items</p>
+                </div>
+                <div class="col-2">
+                    <button class="btn btn-danger btn-block"
+                            (click)=addToCart(items)
+                            >+</button>
+                </div>
+            </div>
+        </ng-template>
+    </div>
+</div>

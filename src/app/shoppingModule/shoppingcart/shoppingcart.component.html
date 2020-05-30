@@ -1,0 +1,50 @@
+<div class="row" id="maindiv" @customeAnimationSetTwo>
+    <div class="col-3">
+        <div class="loadspinner"  *ngIf="($logState | async)">
+            <mat-progress-spinner [diameter]="40" mode="indeterminate"></mat-progress-spinner>
+        </div>
+        <div *ngIf="!($logState | async)">
+            <ng-container>
+                <app-product-category [currentUser]="currentUser"
+                                      [categoryList]="categoryList"
+                                      [categoryParamsValue]="categoryParamsValue"
+                                      (customevent)="onclickEvent($event)"
+                                      ></app-product-category>
+            </ng-container>
+        </div>
+        <div class="errormessage"  *ngIf="($errorCheck | async)">
+            <label>{{$errorStatusCategory | async}} <span>
+                <mat-icon style="color: red;">warning</mat-icon>
+            </span></label>
+        </div>
+    </div>
+    <div class="col">
+        <div class="row">
+            <div class="loadspinner" *ngIf="($logState | async)">
+                <mat-progress-spinner [diameter]="90" mode="indeterminate"></mat-progress-spinner>
+            </div>
+            <div class="errormessage"  *ngIf="($errorCheck | async)">
+                <label>{{$errorStatusProducts | async}} <span>
+                    <mat-icon style="color: red;">warning</mat-icon>
+                </span></label>
+            </div>
+                <ng-container *ngFor="let items of filterProductList; index as i">
+                    <div class="col-3">
+                        <ng-container>
+                            <div class="animationContent" [@zoomin]="animationState"
+                                  (@zoomin.start)=animationStartEvent($event)
+                                  (@zoomin.done)=animationEndEvent($event)>
+                                    <div *ngIf="!($logState | async)">
+                                        <app-product-cardlist [items]="items" [isActive]="true"></app-product-cardlist>
+                                    </div>
+                            </div>
+                        </ng-container>
+                    </div>
+                    <div *ngIf="(i+1)%4 == 0" class="w-100" ></div>
+                </ng-container>
+        </div>
+    </div>
+</div>
+
+
+

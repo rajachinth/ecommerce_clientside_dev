@@ -1,0 +1,9 @@
+#maindiv
+{
+    margin-top:20px;
+}
+.loadspinner,.errormessage
+{
+    margin-top: 25%;
+    margin-left: 45%;
+}

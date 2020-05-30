@@ -1,0 +1,59 @@
+<div class="row" *ngIf="$orderList | async as orderlist">
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Customer Details</h5>
+                        <ul class="list-group list-group-flush" *ngFor="let itemlist of orderlist.orderList">
+                                <li class="list-group-item" *ngIf="itemlist.id == orderID"> 
+                                    <span style="font-weight: bold;" class="float-left">Customer: </span>
+                                    <div class="float-right">{{itemlist.customerDetails.name}}</div>
+                                    </li>
+                                <li class="list-group-item" *ngIf="itemlist.id == orderID">
+                                    <span style="font-weight: bold;" class="float-left">Mobile: </span>
+                                    <div class="float-right">{{itemlist.customerDetails.mobile}}</div>
+                                    </li>
+                                <li class="list-group-item" *ngIf="itemlist.id == orderID">
+                                    <span style="font-weight: bold;" class="float-left">Address: </span>
+                                    <div class="float-right">{{itemlist.customerDetails.address}}</div>
+                                    </li>
+                                <li class="list-group-item" *ngIf="itemlist.id == orderID">
+                                    <span style="font-weight: bold;" class="float-left">Pincode: </span>
+                                    <div class="float-right">{{itemlist.customerDetails.pincode}}</div>
+                                    </li>
+                                <li class="list-group-item" *ngIf="itemlist.id == orderID">
+                                    <span style="font-weight: bold;" class="float-left">Order Date: </span>
+                                    <div class="float-right">{{itemlist.orderDate | date:'short'}}</div>
+                                    </li>
+                        </ul>
+                    </div>  
+                </div>
+            </div>  
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Order Details</h5>
+                        <ul class="list-group list-group-flush" 
+                            *ngFor="let product of orderlist.orderList; first as firstitem">   
+                            <p *ngIf="firstitem && product.id == orderID" class="card-text">You ordered total of {{product.cartDetails.totalItemsCount}} items</p> 
+                            <ul class="list-group list-group-flush" 
+                                *ngFor="let itemlist of product.cartDetails.productItem;last as lastitem">
+                                <li *ngIf="product.id == orderID" class="list-group-item">
+                                    {{itemlist.title}}
+                                    <span style="font-weight:bold">  X{{itemlist.count}}</span>
+                                    <div class="float-right" style="font-weight: bold;">
+                                        {{(itemlist.price*itemlist.count) | currency:'USD'}}
+                                    </div>
+                                </li>
+                                <li *ngIf="product.id == orderID && lastitem" class="list-group-item" style="font-weight: bold;">
+                                    Total Quantity
+                                    <span style="font-weight: bold;">  X{{product.cartDetails.totalItemsCost}}</span>
+                                    <div class="float-right" style="font-weight: bold;">
+                                    Price Sum: {{product.cartDetails.totalItemsCount | currency:'USD'}}
+                                    </div>
+                                </li>
+                            </ul>
+                        </ul>
+                    </div>
+                </div> 
+            </div>
+</div>

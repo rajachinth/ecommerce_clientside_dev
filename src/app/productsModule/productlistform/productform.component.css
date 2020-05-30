@@ -1,0 +1,13 @@
+.row
+{
+    margin-top: 5%;
+    margin-left: 10%;
+}
+button
+{
+    margin-left: 10px;
+}
+.loadspinner,.errorLogin
+{
+    margin-left: 45%;
+}

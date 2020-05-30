@@ -1,0 +1,25 @@
+<div class="divmessage"> 
+    <div class="form-group">
+        <div>
+            <button class="btn btn-success" (click)="logData()">JSON</button>
+        </div>
+        <div class="loadspinner"  *ngIf="($logState | async)">
+            <mat-progress-spinner [diameter]="40" mode="indeterminate"></mat-progress-spinner>
+        </div>
+        <div *ngIf="($errorCheck | async)" class="errorLogin">
+            <label>{{$errorStatus | async}} <span>
+                <mat-icon style="color: red;">warning</mat-icon>
+            </span></label>
+        </div>
+    </div>
+    <div class="flexdisplay">
+        <div class="form-group">
+            <textarea class="form-control" rows="15">{{jsonData | json}}</textarea>
+    </div>
+    <div style="margin-top: 10%; padding-left: 15px;">
+        <p style="font-size:25px;">Route under development<span>
+            <mat-icon style="font-size: 25px;color: red;">warning</mat-icon></span></p>
+    </div>
+    </div>
+</div>
+

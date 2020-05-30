@@ -1,0 +1,55 @@
+<nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand" routerLink="/authentication/home"><mat-icon>home</mat-icon></a>
+    <button class="navbar-toggler" 
+            data-toggle="collapse" 
+            data-target="#navbarToggler" >
+    <span>Content hidden,please maximize the browser</span>
+    </button> 
+    <div class="collapse navbar-collapse" id="navbarToggler">
+      <div class="collpase navbar-collapse"> 
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/shopping/shoppingList">HotList</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/shopping/checkout">Cart
+            <span *ngIf="$cartState | async as cartState" class="badge badge-pill badge-success">
+              {{cartState.totalItemsCount}}
+            </span>
+            </a>
+          </li>
+        </ul>
+        <ul class="navbar-nav" style="margin-right: 45px;">
+          <ng-template #loginButton class="loginbutton">
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/authentication/login">Login</a>
+            </li>
+          </ng-template>
+          <div *ngIf="$loginData | async as loginData">
+            <li *ngIf="loginData.loggedin; else loginButton" ngbDropdown class="nav-item dropdown">
+              <a ngbDropdownToggle class="nav-link dropdown-toggle" 
+                 id="navbarDropdown" 
+                 role="button"
+                 data-toggle="dropdown" > 
+                {{loginData.username}}
+              </a>
+              <div *ngIf="loginData.loggedin" ngbDropdownMenu class="dropdown-menu">
+                  <ng-container *ngIf="loginData.admin">
+                    <a class="dropdown-item" [routerLink]="['/order/myorder',queryParamsValue]" >My order</a>
+                    <a class="dropdown-item" [routerLink]="['/order/adminorder',queryParamsValue]" >Manage Order</a>
+                    <a class="dropdown-item" [routerLink]="['/product/adminproduct',queryParamsValue]">Manage Product</a>
+                  </ng-container>
+                <a class="dropdown-item" (click)="logOut()">Logout</a>
+              </div>
+            </li>
+          </div>
+        </ul>
+      </div>  
+    </div>
+  </nav>
+
+<div [@customeAnimationSetTwo]="routeTransitionAnimation(outletIdentifier)">
+  <router-outlet #outletIdentifier="outlet"></router-outlet>
+</div>
+  
+

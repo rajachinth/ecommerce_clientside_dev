@@ -1,0 +1,17 @@
+<div class="sticky">
+    <a class="list-group-item list-group-item-action"
+           routerLink="/shopping/shoppingList"
+           [queryParams]="{user:currentUser}"
+           [class.active]="!categoryParamsValue"
+           (click)="onclick()"
+           >All categories</a>
+        <ul class="list-group">
+            <a *ngFor="let category of categoryList" class="list-group-item list-group-item-action"
+                routerLink="/shopping/shoppingList" [queryParams]="{category:category.language,id:category.categoryID}"
+                [class.active]="category.categoryID == categoryParamsValue"
+                (click)="onclick()"
+                >
+                {{category.language}}
+            </a>
+        </ul>
+</div>

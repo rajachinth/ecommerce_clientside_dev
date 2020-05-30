@@ -1,0 +1,40 @@
+<div class="loadspinner" *ngIf="($logState | async)">
+    <mat-progress-spinner [diameter]="40" mode="indeterminate"></mat-progress-spinner>
+</div>
+<div *ngIf="($errorCheck | async)" class="errorLogin">
+    <label>{{$errorStatus | async}} <span>
+        <mat-icon style="color: red;">warning</mat-icon>
+    </span></label>
+</div>
+<div class="row" *ngIf="!($logState | async)" >
+    <div class="col-6" *ngIf="$orderList | async as orderlist">
+        <div *ngIf="orderlist.orderList.length === 1; else showdata">
+            <h5>No Orders to Display</h5>
+        </div>
+        <ng-template #showdata>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Customer</th>
+                        <th>Order ID</th>
+                        <th>Order Date</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody >
+                    <tr *ngFor="let itemlist of orderlist.orderList; index as i">
+                        <td *ngIf="i >0">{{itemlist.customerDetails.name}}</td>
+                        <td *ngIf="i >0">orderX0{{i}}</td>
+                        <td *ngIf="i >0">{{itemlist.orderDate | date:'short'}}</td>
+                        <td *ngIf="i >0" > 
+                            <a class="btn-btn-primary" [routerLink]="['/order/revieworder',itemlist.id]">view order</a>
+                        </td>
+                        <td *ngIf="i >0">
+                            <a class="badge badge-pill badge-danger" (click)="deleteOrder(itemlist.id)">delete order</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </ng-template>
+    </div>
+</div>

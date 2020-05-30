@@ -1,0 +1,48 @@
+mat-form-field{
+    width:100%;
+    color: solid black;
+}
+mat-hint,mat-label
+{
+    color:rgb(22, 28, 117) !important;
+}
+.btnone
+{
+    margin-top: 8px !important;
+    margin-left: 40%;
+}
+.btntwo
+{
+    margin-right: 5%;
+    color: rgb(22, 28, 117);
+    border-radius: 10px;
+}
+
+.formgroupone
+{
+    padding:10px;
+    margin-left: 15%;
+    width: 30%;
+    margin-top: 5%;
+    float: left;
+}
+.headcontent
+{
+    margin-top: 5%;
+    margin-left: 50%;
+    text-align: center;
+}
+.formgrouptwo
+{
+ margin-left:50%;
+ margin-top: 5%;
+ text-align: center;
+}
+.errorLogin
+{
+    width: 100%;
+    text-align: center;
+    margin-top: 5px;
+    color: red;
+    font-size: 18px;
+}

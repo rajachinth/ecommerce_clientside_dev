@@ -1,0 +1,13 @@
+<div class="accessdenied">
+    <div>
+        <p style="font-size:300%; font-weight:200%;">Please login to continue
+        <span>
+            <mat-icon style="font-size: 60px;color: red;">warning</mat-icon>
+        </span></p>
+    </div>
+    <div class="button">
+        <button mat-raised-button color="primary" 
+                [routerLink]="['/authentication/login']" 
+                [queryParams]="{requestbackURL:queryParam}">Login</button>
+    </div>
+</div>

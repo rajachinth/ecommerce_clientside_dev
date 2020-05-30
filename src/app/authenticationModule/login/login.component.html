@@ -1,0 +1,81 @@
+<div @customeAnimationSetOne>
+  <form #form="ngForm" class="formgroupone">
+      <div ngModelGroup="modelgroup" #modelgroup="ngModelGroup">
+        <mat-form-field>
+            <span matSuffix><mat-icon>perm_identity</mat-icon></span>
+            <input ngModel 
+                   name="uniqueID"
+                   #uniqueID="ngModel"
+                   required
+                   minlength="6"
+                   maxlength="10"
+                   matInput 
+                   type="text"
+                   id="uniqueID">
+            <mat-hint>enter custom 6 digit valid uniqueID</mat-hint>
+            <div *ngIf="uniqueID.touched && uniqueID.invalid">
+                <mat-error *ngIf="uniqueID.errors.minlength">
+                    user entered only {{uniqueID.errors.minlength.actualLength}} characters
+                </mat-error>
+                <mat-error *ngIf="uniqueID.errors.required"> 
+                    user should enter this field mandatorily
+                </mat-error>
+            </div>
+        </mat-form-field>
+        <mat-form-field >
+            <span matSuffix><mat-icon>lock</mat-icon></span>
+            <input ngModel 
+                   name="password"
+                   #password="ngModel"
+                   required
+                   minlength="4"
+                   maxlength="10"
+                   matInput
+                   type="text"
+                   uppercase
+                   id="password">
+            <mat-hint>enter custom valid password</mat-hint>
+            <div *ngIf="password.touched && password.invalid">
+                <mat-error *ngIf="password.errors.minlength">
+                    user entered only {{password.errors.minlength.actualLength}} characters
+                </mat-error>
+                <mat-error *ngIf="password.errors.required"> 
+                    user should enter this field mandatorily
+                </mat-error>
+            </div>
+        </mat-form-field>
+        <div class="btnone">
+            <button mat-raised-button color="primary" *ngIf="!($logState | async)"
+                    [disabled]="modelgroup.invalid"
+                    (click)="logIn(modelgroup.value)"
+                    >LogIn</button>
+                <div class="loadspinner" *ngIf="($logState | async)">
+                        <mat-progress-spinner [diameter]="40" mode="indeterminate"></mat-progress-spinner>
+                </div>
+        </div>
+        <div *ngIf="($errorCheck | async)" class="errorLogin">
+            <label>{{$errorStatus | async}} <span>
+                <mat-icon style="color: red;">warning</mat-icon>
+            </span></label>
+        </div>
+      </div>
+  </form>
+    <div class="headcontent" [@pulse]="stateChange" 
+        (@pulse.start)='startAnimationEvent($event)'
+        (@pulse.done)='endAnimationEvent($event)' >
+        <h2>Go live! with your favourite books</h2>
+    </div>
+    <div class="formgrouptwo"  >
+        <button mat-raised-button class="btntwo"
+        routerLink="/shopping/shoppingList">Continue Shopping<span>
+        <mat-icon>shopping_cart</mat-icon>
+        </span></button>
+        <button mat-raised-button class="btntwo" 
+        routerLink="/authentication/signup"
+        >Register<span>
+        <mat-icon>how_to_reg</mat-icon>
+        </span>
+        </button>
+    </div>
+</div>
+ 
