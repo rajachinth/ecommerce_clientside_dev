@@ -9,65 +9,58 @@ import { AuthserviceService } from './sharedModule/services/authservice.service'
 import { USERDATA } from './storeModule/redux/coreaction';
 import { RootStoreState } from './storeModule/redux/corestore';
 import { customAnimationSetTwo } from './animations/custom-animation';
-    
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
   animations: [customAnimationSetTwo]
 })
-export class AppComponent implements OnInit,OnDestroy
-{
-  public queryParamsValue='?';
- 
-  @select(value=>value.loginstate) $loginData:Observable<object>;
-  @select(value=>value.cartstate) $cartState:Observable<any>;
+export class AppComponent implements OnInit, OnDestroy {
+  public queryParamsValue = '?';
+
+  @select(value => value.loginstate) $loginData: Observable<object>;
+  @select(value => value.cartstate) $cartState: Observable<any>;
   subsciption: Subscription;
 
-  constructor(private authservice:AuthserviceService, 
-              private ngRedux:NgRedux<RootStoreState>,
-              private route:Router,
-              private routerState:ActivatedRoute,
-              ) 
-   { 
-    ngRedux.subscribe(()=>{
+  constructor(private authservice: AuthserviceService,
+              private ngRedux: NgRedux<RootStoreState>,
+              private route: Router,
+              private routerState: ActivatedRoute,
+              ) {
+    ngRedux.subscribe(() => {
         console.log(ngRedux.getState());
-    })
-    //console.log(this.queryParamsValue);
+    });
+    // console.log(this.queryParamsValue);
    }
 
-  ngOnInit() 
-  {
-    console.log(this.route.routerState.snapshot.url)
-    this.subsciption=combineLatest(this.routerState.queryParamMap)
-    .subscribe((paramState=>{
-      if(!(paramState[0].get('user'))) return '?';
-      this.queryParamsValue=paramState[0].get('user');
+  ngOnInit() {
+    console.log(this.route.routerState.snapshot.url);
+    this.subsciption = combineLatest(this.routerState.queryParamMap)
+    .subscribe((paramState => {
+      if (!(paramState[0].get('user'))) { return '?'; }
+      this.queryParamsValue = paramState[0].get('user');
     }));
-    if(this.authservice.loginStatus()) 
-    {
+    if (this.authservice.loginStatus()) {
       /*
       const decodedData=this.authservice.decodeToken('authToken');
       this.ngRedux.dispatch({type:USERDATA,data:decodedData});
       this.route.navigate(['/shopping/shoppingList'],{queryParams:{user:decodedData.name}});
       */
-     //this.authservice.logoutService();
+     // this.authservice.logoutService();
     }
   }
-  logOut()
-  {
+  logOut() {
     localStorage.removeItem('authToken');
-    this.ngRedux.dispatch({type:USERDATA,data:LOGINSTATE})
+    this.ngRedux.dispatch({type: USERDATA, data: LOGINSTATE});
     this.route.navigate(['/authentication/login']);
   }
-  routeTransitionAnimation(outletIdentifier)
-  { 
-    //console.log(outletIdentifier.activatedRouteData['animation']);
-    return outletIdentifier.activatedRouteData['animation'];
+  routeTransitionAnimation(outletIdentifier) {
+    // console.log(outletIdentifier.activatedRouteData['animation']);
+    return outletIdentifier.activatedRouteData.animation;
   }
-  ngOnDestroy() 
-  {
-    this.subsciption.unsubscribe()
+  ngOnDestroy() {
+    this.subsciption.unsubscribe();
   }
   /*
   animateRoute(outlet)

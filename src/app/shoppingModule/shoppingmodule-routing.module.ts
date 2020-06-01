@@ -6,10 +6,10 @@ import { OrdersummaryComponent } from './ordersummary/ordersummary.component';
 import { AuthguardService } from '../sharedModule/services/authguard.service';
 
 
-const routes: Routes = [{path:'',children:[
-  {path:'shoppingList',component:ShoppingcartComponent,pathMatch:'full'},
-  {path:'checkout',component:CheckoutComponent},
-  {path:'ordersummary',component:OrdersummaryComponent,canActivate:[AuthguardService]},]}];
+const routes: Routes = [{path: '', children: [
+  {path: 'shoppingList', component: ShoppingcartComponent, pathMatch: 'full'},
+  {path: 'checkout', component: CheckoutComponent},
+  {path: 'ordersummary', component: OrdersummaryComponent, canActivate: [AuthguardService]}, ]}];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

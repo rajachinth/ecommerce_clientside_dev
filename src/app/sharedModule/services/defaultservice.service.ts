@@ -1,6 +1,6 @@
 import { Injectable, Inject } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
-import { catchError } from "rxjs/operators"
+import { HttpClient } from '@angular/common/http';
+import { catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 
 @Injectable({
@@ -8,32 +8,28 @@ import { throwError } from 'rxjs';
 })
 export class DefaultserviceService {
 
-  constructor(@Inject(String)private url:string, private http:HttpClient) { }
-  getdata()
-  {
+  constructor(@Inject(String)private url: string, private http: HttpClient) { }
+  getdata() {
     return this.http.get(this.url)
-     .pipe(catchError((error:Response)=>{
+     .pipe(catchError((error: Response) => {
        return throwError(error);
      }));
   }
-  postdata(data)
-  {
-    return this.http.post(this.url,data)
-     .pipe(catchError((error:Response)=>{
-       return throwError(error);
-     }));
-  };
-  updatedata(data)
-  {
-    this.http.put(this.url,data)
-     .pipe(catchError((error:Response)=>{
+  postdata(data) {
+    return this.http.post(this.url, data)
+     .pipe(catchError((error: Response) => {
        return throwError(error);
      }));
   }
-  deletedata(data)
-  {
-    this.http.delete(this.url,data)
-     .pipe(catchError((error)=>{
+  updatedata(data) {
+    this.http.put(this.url, data)
+     .pipe(catchError((error: Response) => {
+       return throwError(error);
+     }));
+  }
+  deletedata(data) {
+    this.http.delete(this.url, data)
+     .pipe(catchError((error) => {
        return throwError(error);
      }));
   }

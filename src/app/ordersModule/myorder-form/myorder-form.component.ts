@@ -7,15 +7,13 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './myorder-form.component.html',
   styleUrls: ['./myorder-form.component.css']
 })
-export class MyorderFormComponent 
- {
+export class MyorderFormComponent {
 
-  @select(element=>element.orderstate) $orderList;
+  @select(element => element.orderstate) $orderList;
   orderID;
 
-  constructor(ngRedux:NgRedux<RootStoreState>,private route:ActivatedRoute) 
-  { 
-    this.orderID=this.route.snapshot.paramMap.get('orderID');
+  constructor(ngRedux: NgRedux<RootStoreState>, private route: ActivatedRoute) {
+    this.orderID = this.route.snapshot.paramMap.get('orderID');
   }
 
 

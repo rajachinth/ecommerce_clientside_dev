@@ -4,17 +4,14 @@ import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class  UserService 
-{
-  constructor(private http:HttpClient) { }
+export class  UserService {
+  constructor(private http: HttpClient) { }
 
-  userSignupService(signupData)
-  {
+  userSignupService(signupData) {
     console.log(signupData);
-    return this.http.post('http://localhost:3000/authentication/signup',signupData,{responseType:'text'});
+    return this.http.post('https://online-book-shelf.herokuapp.com/authentication/signup', signupData, {responseType: 'text'});
   }
-  userPostService(loginData)
-  {
-    return this.http.post('http://localhost:3000/authentication/login',loginData,{responseType:'text'}); //XHR or XMLHttpRequest (Extensibe )
+  userPostService(loginData) {
+    return this.http.post('https://online-book-shelf.herokuapp.com/authentication/login', loginData, {responseType: 'text'}); // XHR or XMLHttpRequest (Extensibe )
   }
 }

@@ -6,9 +6,9 @@ import { InvalidrouteComponent } from './commonComponents/invalidroute/invalidro
 
 
 const routes: Routes = [
-  {path:'',children:[{path:'accessdenied',component:AccessdeniedComponent},
-  {path:'ordersuccess',component:OrdersuccessComponent}]},
-  {path:'**',component:InvalidrouteComponent}  
+  {path: '', children: [{path: 'accessdenied', component: AccessdeniedComponent},
+  {path: 'ordersuccess', component: OrdersuccessComponent}]},
+  {path: '**', component: InvalidrouteComponent}
 ];
 
 @NgModule({

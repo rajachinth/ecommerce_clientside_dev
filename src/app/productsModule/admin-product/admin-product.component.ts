@@ -12,47 +12,43 @@ import { InternalServerError, ApplicationError } from 'src/app/sharedModule/cust
   templateUrl: './admin-product.component.html',
   styleUrls: ['./admin-product.component.css']
 })
-export class AdminProductComponent implements OnInit,OnDestroy {
-  
-  $curentUser:Observable<string>;
-  $productLists:Observable<Object>;
-  productLists:AdminProducts[];
-  filterLists:any[];
-  subscription:Subscription;
+export class AdminProductComponent implements OnInit, OnDestroy {
 
-  @select(value=>value.logstate.shoppingServer) $logState:Observable<object>;
-  $errorStatusProducts:Observable<String>;
-  $errorCheck:Observable<Boolean>;
-  
-  constructor(private routerState:ActivatedRoute,
-              private productService:ProductformService) 
-  { 
-    this.$errorCheck=of(false);
-    this.subscription=this.productService.getProductValues()  
-                          .subscribe((productValue:any)=>this.filterLists=this.productLists=productValue,
-                          (error)=>{
-                            this.$errorCheck=of(true);
-                            if(error instanceof InternalServerError) return this.$errorStatusProducts=of('internal server error');
-                            if (error instanceof ApplicationError) return this.$errorStatusProducts=of('unknow error');
+  $curentUser: Observable<string>;
+  $productLists: Observable<Object>;
+  productLists: AdminProducts[];
+  filterLists: any[];
+  subscription: Subscription;
+
+  @select(value => value.logstate.shoppingServer) $logState: Observable<object>;
+  $errorStatusProducts: Observable<String>;
+  $errorCheck: Observable<Boolean>;
+
+  constructor(private routerState: ActivatedRoute,
+              private productService: ProductformService) {
+    this.$errorCheck = of(false);
+    this.subscription = this.productService.getProductValues()
+                          .subscribe((productValue: any) => this.filterLists = this.productLists = productValue,
+                          (error) => {
+                            this.$errorCheck = of(true);
+                            if (error instanceof InternalServerError) { return this.$errorStatusProducts = of('internal server error'); }
+                            if (error instanceof ApplicationError) { return this.$errorStatusProducts = of('unknow error'); }
                           });
   }
 
-  ngOnInit() 
-  {
-    this.$curentUser=this.routerState.paramMap
-        .pipe(map(routerstate=>{return routerstate.get('username')}))
-        .pipe(tap((value)=>{console.log(value)}))    
+  ngOnInit() {
+    this.$curentUser = this.routerState.paramMap
+        .pipe(map(routerstate => routerstate.get('username')))
+        .pipe(tap((value) => {console.log(value); }));
   }
-  filter(searchKey:string)
-  {
+  filter(searchKey: string) {
     console.log(searchKey);
-    this.filterLists=(searchKey) ? 
-      this.productLists.filter(productValue=> 
+    this.filterLists = (searchKey) ?
+      this.productLists.filter(productValue =>
             productValue.title.toLowerCase().includes(searchKey.toLowerCase()))
-            :this.productLists;
+            : this.productLists;
   }
-  ngOnDestroy() 
-  {
+  ngOnDestroy() {
     this.subscription.unsubscribe();
   }
 

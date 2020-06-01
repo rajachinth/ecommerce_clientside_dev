@@ -5,7 +5,6 @@ import { Component } from '@angular/core';
   templateUrl: './ordersuccess.component.html',
   styleUrls: ['./ordersuccess.component.css']
 })
-export class OrdersuccessComponent  
-{
+export class OrdersuccessComponent {
   constructor() { }
 }

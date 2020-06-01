@@ -7,20 +7,18 @@ import { Subscription } from 'rxjs';
   templateUrl: './accessdenied.component.html',
   styleUrls: ['./accessdenied.component.css']
 })
-export class AccessdeniedComponent implements OnInit,OnDestroy {
+export class AccessdeniedComponent implements OnInit, OnDestroy {
   public queryParam;
   subscription: Subscription;
-  constructor(private routeState:ActivatedRoute) { }
+  constructor(private routeState: ActivatedRoute) { }
 
-  ngOnInit() 
-  {
-    this.subscription=this.routeState.queryParamMap
-        .subscribe(paramap=>{
-          this.queryParam=paramap.get('requestbackURL');
+  ngOnInit() {
+    this.subscription = this.routeState.queryParamMap
+        .subscribe(paramap => {
+          this.queryParam = paramap.get('requestbackURL');
         });
   }
-  ngOnDestroy() 
-  {
+  ngOnDestroy() {
     this.subscription.unsubscribe();
   }
 

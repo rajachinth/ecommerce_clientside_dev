@@ -13,7 +13,7 @@ import { SharedmoduleModule } from '../sharedModule/sharedmodule.module';
     MyorderComponent,
     AdminOrderComponent,
     MyorderFormComponent,
-   
+
   ],
   imports: [
     CommonModule,

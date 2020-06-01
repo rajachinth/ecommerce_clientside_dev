@@ -10,23 +10,23 @@ import { HttpRequestInterceptor } from './sharedModule/services/httprequest.inte
 import { HttpResponseInterceptor } from './sharedModule/services/httpresponse.interceptor';
 
 export function tokenGetter() {
-  return localStorage.getItem("default_auth_token");
+  return localStorage.getItem('default_auth_token');
 }
 
 @NgModule({
   declarations: [ AppComponent ],
-  imports: 
+  imports:
   [
     BrowserAnimationsModule,
     AppRoutingModule,
     SharedmoduleModule,
     HttpClientModule,
-    JwtModule.forRoot({ config:{tokenGetter:tokenGetter,whitelistedDomains: ["localhost:3000"]} }),  
+    JwtModule.forRoot({ config: {tokenGetter, whitelistedDomains: ['localhost:3000']} }),
     StoreModuleModule,
   ],
   providers: [
-    {provide:HTTP_INTERCEPTORS,useClass:HttpRequestInterceptor,multi:true},
-    {provide:HTTP_INTERCEPTORS,useClass:HttpResponseInterceptor,multi:true}
+    {provide: HTTP_INTERCEPTORS, useClass: HttpRequestInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: HttpResponseInterceptor, multi: true}
    ],
   bootstrap: [AppComponent]
 })

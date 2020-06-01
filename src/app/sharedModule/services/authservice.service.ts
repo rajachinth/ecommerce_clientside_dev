@@ -3,27 +3,22 @@ import {JwtHelperService} from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
-})  
+})
 export class AuthserviceService {
 
-  constructor(private jwt:JwtHelperService) { }
+  constructor(private jwt: JwtHelperService) { }
 
-  loginService(token?:string)
-  {
-    localStorage.setItem('authToken',token);
+  loginService(token?: string) {
+    localStorage.setItem('authToken', token);
   }
-  loginStatus()
-  {
-    if(!this.jwt.isTokenExpired(localStorage.getItem('authToken'))) return true;
-    else return false;
+  loginStatus() {
+    if (!this.jwt.isTokenExpired(localStorage.getItem('authToken'))) { return true; } else { return false; }
   }
-  decodeToken(keyToken)
-  {
-    const DTOKEN=this.jwt.decodeToken(localStorage.getItem(keyToken));
+  decodeToken(keyToken) {
+    const DTOKEN = this.jwt.decodeToken(localStorage.getItem(keyToken));
     return DTOKEN;
   }
-  logoutService()
-  {
+  logoutService() {
     localStorage.removeItem('authToken');
   }
 }

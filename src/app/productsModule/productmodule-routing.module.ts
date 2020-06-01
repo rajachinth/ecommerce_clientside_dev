@@ -7,13 +7,13 @@ import { AdminProductComponent } from './admin-product/admin-product.component';
 
 
 const routes: Routes = [
-  {path:'',children:[
-  {path:'adminproduct/addproduct/:username',component:ProductformComponent,
-  canActivate:[AuthguardService,AdminguardService]},
-  {path:'adminproduct/editproduct/:username/:productID',component:ProductformComponent,
-  canActivate:[AuthguardService,AdminguardService]},
-  {path:'adminproduct/:username',component:AdminProductComponent,
-  canActivate:[AuthguardService,AdminguardService]},]}
+  {path: '', children: [
+  {path: 'adminproduct/addproduct/:username', component: ProductformComponent,
+  canActivate: [AuthguardService, AdminguardService]},
+  {path: 'adminproduct/editproduct/:username/:productID', component: ProductformComponent,
+  canActivate: [AuthguardService, AdminguardService]},
+  {path: 'adminproduct/:username', component: AdminProductComponent,
+  canActivate: [AuthguardService, AdminguardService]}, ]}
 ];
 
 @NgModule({

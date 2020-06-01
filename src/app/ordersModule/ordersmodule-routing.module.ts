@@ -7,12 +7,12 @@ import { AuthguardService } from '../sharedModule/services/authguard.service';
 import { AdminguardService } from '../sharedModule/services/adminguard.service';
 
 
-const routes: Routes = [{path:'',children:[
-{path:'revieworder/:orderID',component:MyorderFormComponent},
-{path:'myorder/:username',component:MyorderComponent,
-canActivate:[AuthguardService]},
-{path:'adminorder/:username',component:AdminOrderComponent,
-canActivate:[AuthguardService,AdminguardService]},
+const routes: Routes = [{path: '', children: [
+{path: 'revieworder/:orderID', component: MyorderFormComponent},
+{path: 'myorder/:username', component: MyorderComponent,
+canActivate: [AuthguardService]},
+{path: 'adminorder/:username', component: AdminOrderComponent,
+canActivate: [AuthguardService, AdminguardService]},
 ]}];
 
 @NgModule({

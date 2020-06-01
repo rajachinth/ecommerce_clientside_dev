@@ -1,20 +1,19 @@
-export interface OrderModel
-{
-    orderList:{
-        id:string,
-        orderDate:Date,
-        customerDetails:{
-            name:string,
-            address:string,
-            pincode:number,
-            mobile:number,
+export interface OrderModel {
+    orderList: {
+        id: string,
+        orderDate: Date,
+        customerDetails: {
+            name: string,
+            address: string,
+            pincode: number,
+            mobile: number,
         },
-        cartDetails:{
-            productItem:Array<any>,
-            totalItemsCost:number,
-            totalItemsCount:number
+        cartDetails: {
+            productItem: Array<any>,
+            totalItemsCost: number,
+            totalItemsCount: number
         }
-    }[]
+    }[];
 }
  /*const orderModel:OrderModel={
                     orderList:[{

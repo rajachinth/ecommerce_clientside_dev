@@ -10,21 +10,19 @@ import { BadRequestError, InternalServerError, ApplicationError } from '../custo
 })
 export class UniqueAsyncValidatorService {
 
-  constructor(private http:HttpClient) { }
-  uniqueNameCheck():AsyncValidatorFn
-  { 
-    return (control: AbstractControl): Promise<ValidationErrors | null> | Observable<ValidationErrors | null>=>
-    {
-      let obj={uniqueID:control.value};
-      let $response=this.http.post('http://localhost:3000/authentication/signup/uniquecheck',obj,{responseType:'text'});
-      return $response.pipe(map((response)=>{
+  constructor(private http: HttpClient) { }
+  uniqueNameCheck(): AsyncValidatorFn {
+    return (control: AbstractControl): Promise<ValidationErrors | null> | Observable<ValidationErrors | null> => {
+      const obj = {uniqueID: control.value};
+      const $response = this.http.post('https://online-book-shelf.herokuapp.com/authentication/signup/uniquecheck', obj, {responseType: 'text'});
+      return $response.pipe(map((response) => {
         console.log(response);
-        if(response.includes('200')) return null;
-      }),catchError((error)=>{
-          if(error instanceof BadRequestError) return of({uniqueID:'duplicateID'});
-          if(error instanceof InternalServerError) return of({serverError:'serverError'});
-          if (error instanceof ApplicationError) return of({serverError:'serverError'});
-      }));          
-    }
+        if (response.includes('200')) { return null; }
+      }), catchError((error) => {
+          if (error instanceof BadRequestError) { return of({uniqueID: 'duplicateID'}); }
+          if (error instanceof InternalServerError) { return of({serverError: 'serverError'}); }
+          if (error instanceof ApplicationError) { return of({serverError: 'serverError'}); }
+      }));
+    };
   }
 }

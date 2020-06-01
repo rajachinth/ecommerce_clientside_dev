@@ -1,5 +1,4 @@
-export interface ProductCard
-{
-    isItemAdded:boolean,
-    itemCount:number
+export interface ProductCard {
+    isItemAdded: boolean;
+    itemCount: number;
 }

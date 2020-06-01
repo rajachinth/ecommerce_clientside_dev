@@ -27,7 +27,7 @@ import { UniqueAsyncValidatorService } from './custom validators service/unique-
 import { ProductCardlistComponent } from './commonComponents/product-cardlist/product-cardlist.component';
 import { ProductCategoryComponent } from './commonComponents/product-category/product-category.component';
 
-@NgModule({ 
+@NgModule({
   declarations: [
     OrdersuccessComponent,
     AccessdeniedComponent,
@@ -41,14 +41,14 @@ import { ProductCategoryComponent } from './commonComponents/product-category/pr
     CommonModule,
     SharedmoduleRoutingModule,
     NgbModule,
-    ReactiveFormsModule, 
+    ReactiveFormsModule,
     FormsModule,
     CustomFormsModule,
     AngularMaterialModules,
     RouterModule,
-    
+
   ],
-  providers:[
+  providers: [
     DefaultserviceService,
     UserService,
     ProductformService,
@@ -63,7 +63,7 @@ import { ProductCategoryComponent } from './commonComponents/product-category/pr
   exports:
   [
     NgbModule,
-    ReactiveFormsModule, 
+    ReactiveFormsModule,
     FormsModule,
     CustomFormsModule,
     AngularMaterialModules,

@@ -5,13 +5,10 @@ import { Observable, of } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class PreloadserviceService implements PreloadingStrategy
-{
+export class PreloadserviceService implements PreloadingStrategy {
 
   constructor() { }
-  preload(route:Route, fn: () =>Observable<any>):Observable<any> 
-  {
-    if(route.data && route.data.preload) return fn();
-    else return of(null);
+  preload(route: Route, fn: () => Observable<any>): Observable<any> {
+    if (route.data && route.data.preload) { return fn(); } else { return of(null); }
   }
 }
