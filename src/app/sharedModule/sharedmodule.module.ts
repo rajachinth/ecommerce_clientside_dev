@@ -11,7 +11,6 @@ import { CasechangedirectiveDirective } from './custom directives/casechangedire
 import { AccessdeniedComponent } from './commonComponents/accessdenied/accessdenied.component';
 import { InvalidrouteComponent } from './commonComponents/invalidroute/invalidroute.component';
 
-import { DefaultserviceService } from './services/defaultservice.service';
 import { UserService } from './services/userservice.service';
 import { AuthserviceService } from './services/authservice.service';
 import { CartorderService } from './services/cartorder.service';
@@ -49,7 +48,6 @@ import { ProductCategoryComponent } from './commonComponents/product-category/pr
 
   ],
   providers: [
-    DefaultserviceService,
     UserService,
     ProductformService,
     AuthserviceService,

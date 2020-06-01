@@ -1,7 +1,8 @@
 export interface AdminProducts {
-    id: string;
-    title: string;
-    price: number;
-    category: number;
-    imageURL: string;
+    productID: string,
+    title: string,
+    price: number,
+    category: number,
+    author:string,
+    imageURL: string
 }

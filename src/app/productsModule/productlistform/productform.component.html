@@ -96,7 +96,7 @@
                 </div>
                 <button class="btn btn-primary" [disabled]="modelone.invalid" 
                         (click)="submit(modelone.value)">Save</button>
-                <button type="button" (click)="delete(modelone.value)" 
+                <button type="button" (click)="delete()" 
                         [disabled]="modelone.invalid" class="btn btn-danger">Delete</button>
                 <div class="loadspinner" *ngIf="($logState | async)">
                     <mat-progress-spinner [diameter]="40" mode="indeterminate"></mat-progress-spinner>

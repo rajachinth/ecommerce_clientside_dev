@@ -6,6 +6,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { select } from '@angular-redux/store';
 import { BadRequestError, InternalServerError,
   NotFounfError, ApplicationError } from '../../sharedModule/custom errors/applicationerrors';
+import { AdminProducts } from 'src/app/sharedModule/models/admin-products';
 
 @Component({
   selector: 'app-productform',
@@ -17,7 +18,15 @@ export class ProductformComponent implements OnInit, OnDestroy {
   $categoryList: Observable<object>;
   currentUser;
   productListData = [];
-  productIDValue = {};
+  productIDValue:AdminProducts=
+  {
+    productID: null,
+    title: null,
+    price: null,
+    category: null,
+    author:null,
+    imageURL: null,
+  }
   id;
   subsciption: Subscription;
 
