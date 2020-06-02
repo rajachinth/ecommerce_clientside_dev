@@ -9,11 +9,11 @@ Admin user can modify the shopping list products and can manage all the orders(`
 
 A normal user can place order and can view his past and current orders in his order list.  
 
--> New user can register under sign-up route with membership details(`prime or non-prime`).  
+▶ New user can register under sign-up route with membership details(`prime or non-prime`).  
 
--> Every user should have a unique ID used to login, here we are checking for the duplicates in data-base before user sign-up, this helps to avoids duplicates user login ID's in database.  
+▶ Every user should have a unique ID used to login, here we are checking for the duplicates in data-base before user sign-up, this helps to avoids duplicates user login ID's in database.  
 
-->LoggedIn user can add products to his cart and place order and can also delete the order if required.  
+▶ LoggedIn user can add products to his cart and place order and can also delete the order if required.  
 
 ## Route Protection and Lazy Loading 
  
