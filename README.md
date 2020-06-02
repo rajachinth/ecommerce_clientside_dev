@@ -163,5 +163,22 @@ compiles that to JS file. `ANGULAR by-default uses SASS`.
 In SASS, MIXIN() consists of other style attributes or other MIXIN's that can be 
 used or implemented within MIXIN and can be "INCLUDED".  
 
-## 
+## Unit and Integration Testing
+
+Writing Automated Test Cases involves additional time-frame and development cost.  
+In few projects, there exist a dedicated testing team who are responsible for testing,
+but in some projects there exist only development team who ae responsible for both.  
+
+->It again depends on the time-frame and capital invested by client to make a real world 
+application with better solution. If you fall under this, there exist no point to develop
+automated test cases for half of the project time-frame; it's meaningless.  
+
+->In few project requirements changes so often, and here writing automated test-cases would be 
+other pay-load for development to maintain both production code and test code. In this aspect,
+its better to write automated test cases for a few which takes huge time for manual testing.  
+
+->It again depends on the project requirements, time-frame, capital to decide whether to write 
+100% code coverage automated test cases for production code or **not**.
+
+`Jasmin/Jest be used as they are mostly similar in code signature.`**(my personal choice)**
   
