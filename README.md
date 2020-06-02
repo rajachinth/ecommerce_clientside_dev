@@ -1,6 +1,6 @@
 ## Online-Bookshelf (front-end Angular application)
 
-This is a ecommerce application build on [Angular CLI](https://github.com/angular/angular-cli) version 8.3.20.  
+This is a ecommerce application build on [Angular CLI](https://github.com/angular/angular-cli) version `8.3.20`.  
 
 ▶ Deployed on `Heroku`, project is live on this [link](https://online-bookshelf.herokuapp.com/)  
 
@@ -107,6 +107,7 @@ state 1 -------`transistion`-------> state 2
     
 **CODE-1**   
 
+ <pre>
  trigger('fade',[
       state('void',style({backgroundColor:'red',opacity:0})),
       state('*',style({backgroundColor:'white',opacity:1})),
@@ -118,9 +119,11 @@ state 1 -------`transistion`-------> state 2
     ])
   ])]
 })  
+ </pre>
 
 **CODE-2**  
 
+<pre>
 trigger('<triggername>',[
     state('<state_name>',style({<styles>})),
     transistion('void => *',[
@@ -128,14 +131,17 @@ trigger('<triggername>',[
         animation(<animation duration>,style())
     ])
 ])  
+</pre>
 
 **CODE-3**  
 
+ <pre>
  trigger('fade',[
       state('void',style({backgroundColor:'red',opacity:0})),
       state('*',style({backgroundColor:'white',opacity:1})),
       transition(':enter,:leave',[animate(2000)]),
 ])]  
+ </pre>
   
 ## Angular Material & Bootsrap
 
