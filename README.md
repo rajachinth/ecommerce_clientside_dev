@@ -5,9 +5,9 @@ This is a ecommerce application build on [Angular CLI](https://github.com/angula
 ## Out-Line of the Project
 Application is designed for a `normal user` and the `Admin user`.  
 
-Admin user can modify the shopping list products and can manage all the orders(`this route is in development stage currently`).  
+▶ Admin user can modify the shopping list products and can manage all the orders(`this route is in development stage currently`).  
 
-A normal user can place order and can view his past and current orders in his order list.  
+▶ A normal user can place order and can view his past and current orders in his order list.  
 
 ▶ New user can register under sign-up route with membership details(`prime or non-prime`).  
 
